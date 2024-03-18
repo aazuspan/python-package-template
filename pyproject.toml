@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "package_name"
+dynamic = ["version"]
+description = ""
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+authors = [{ name = "My Name" }]
+keywords = []
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/github_username/package_name"
+
+[tool.hatch.version]
+path = "src/package_name/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/package_name"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/src"]
+
+[tool.hatch.envs.default]
+dependencies = ["pre-commit"]
+
+[tool.hatch.envs.test]
+dependencies = [
+    "pytest",
+    "pytest-cov",
+]
+
+[tool.hatch.envs.test.scripts]
+all = "pytest . {args}"
+cov = "pytest . --cov=src/package_name {args}"
+
+[tool.hatch.envs.docs]
+dependencies = [
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]"
+]
+
+[tool.hatch.envs.docs.scripts]
+serve = "mkdocs serve --config-file docs/mkdocs.yml"
+build = "mkdocs build --config-file docs/mkdocs.yml"
+
+[tool.ruff]
+fix = true
+show-fixes = true
+
+[tool.ruff.lint]
+select = ["E", "I", "F", "B", "FA", "UP", "PT", "Q", "RET", "SIM", "PERF"]
+isort.known-first-party = ["package_name"]

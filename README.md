@@ -15,9 +15,9 @@ A Python package template.
 ## Setup
 
 1. Run `rm -rf .git && git init` to replace the template Git history with a new Git project.
-2. Run `python init.py` to set package metadata. Afterwards, the script can be deleted.
+2. Run `python -m init` to set package metadata. Afterwards, the script can be deleted.
 3. Modify package dependencies and other settings in `pyproject.toml`.
-4. Replace `src/PACKAGE_NAME/main.py`, `tests/test_template.py`, and `docs/pages/api/main.md` with your package.
+4. Replace `src/.../main.py`, `tests/test_template.py`, and `docs/pages/api/main.md` with your package.
 
 ## Developing
 

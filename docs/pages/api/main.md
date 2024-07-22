@@ -1,1 +1,1 @@
-::: package_name.main.my_function
+::: PACKAGE_NAME.main.my_function

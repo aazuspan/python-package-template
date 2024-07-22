@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "package_name"
+name = "PACKAGE_NAME"
 dynamic = ["version"]
 description = "PACKAGE_DESCRIPTION"
 readme = "README.md"

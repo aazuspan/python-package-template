@@ -8,7 +8,7 @@ jobs:
   test:
     strategy:
       matrix:
-        python-version: [PYTHON_VERSIONS]
+        python-version: ["3.9"]
 
     runs-on: ubuntu-latest
 

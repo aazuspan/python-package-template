@@ -90,7 +90,8 @@ def _replace_placeholder_strings(files: list[Path], placeholder: str, replacemen
             content = src.read()
 
         if placeholder not in content:
-            raise ValueError(f"{placeholder} was not found in {file}!")
+            print(f"Warning: Placeholder '{placeholder}' was not found in {file}!")
+            continue
 
         new_content = content.replace(placeholder, replacement)
 
@@ -113,7 +114,10 @@ def set_package_name(package_name: str):
         replacement=package_name,
     )
 
-    Path("src/PACKAGE_NAME").rename(f"src/{package_name}")
+    try:
+        Path("src/PACKAGE_NAME").rename(f"src/{package_name}")
+    except FileNotFoundError:
+        print("Warning: The package directory 'src/PACKAGE_NAME' was not found!")
 
 
 def set_author_name(author: str):
@@ -167,7 +171,7 @@ def set_min_python(min_python: str):
 
     _replace_placeholder_strings(
         [Path(".github/workflows/ci.yaml")],
-        placeholder="PYTHON_VERSIONS",
+        placeholder='"3.9"',
         replacement=supported_python,
     )
 
@@ -175,11 +179,15 @@ def set_min_python(min_python: str):
 if __name__ == "__main__":
     package_info = PackageInfo.get()
 
+    print("\nInitializing package...")
+
     set_package_name(package_info.name)
     set_author_name(package_info.author)
     set_github_username(package_info.github_user)
     set_description(package_info.description)
     set_min_python(package_info.min_python)
 
-    if input("Delete this script? [y/N]").lower() == "y":
+    print(f"\nYour package {package_info.name} was successfully initialized!")
+
+    if input("Delete this script? [Y/n]").lower() != "n":
         Path("./init.py").unlink()

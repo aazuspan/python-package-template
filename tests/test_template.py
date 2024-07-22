@@ -1,4 +1,4 @@
-from package_name.main import my_function
+from PACKAGE_NAME.main import my_function
 
 
 def test_my_function():
